@@ -1,0 +1,29 @@
+package Test;
+
+import Exception.SandwichAlreadyExistException;
+import Model.Sandwich;
+import Repository.SandwichRepository;
+
+import java.util.List;
+
+public class TestSandwich {
+
+    public static void main(String[] args) {
+        SandwichRepository sl = new SandwichRepository();
+        List<Sandwich> sandwiches = sl.getSandwichList();
+        System.out.println("***** adding Crevettes");
+        Sandwich s1 = new Sandwich("Salade de crevettes", "Fish", "Salade de crevettes", true);
+
+        try {
+            sl.addSandwich(s1);
+            sl.addSandwich(s1);
+        } catch (SandwichAlreadyExistException e) {
+            System.out.println(e);
+        }
+
+        sl.printSandwichList();
+        System.out.println("***** removing 3");
+        sl.removeSandwich("Rosbif");
+        sl.printSandwichList();
+    }
+}
