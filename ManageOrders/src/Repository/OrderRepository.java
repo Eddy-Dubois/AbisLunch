@@ -28,8 +28,8 @@ public class OrderRepository {
 
     public void addOrder(Order order) throws TooManySandwichesException {
     // check maximum of sandwich
-        int orderOfDay = countSandwichOfPerson(order.getPerson()) ;
-        System.out.println("actual Sandwiches for " + order.getPerson() + " is " + orderOfDay);
+        int orderOfDay = countSandwichOfPerson(order.getPerson().getName()) ;
+        System.out.println("actual Sandwiches for " + order.getPerson().getName() + " is " + orderOfDay);
         if (orderOfDay > maxSandwich)
             throw new TooManySandwichesException("sandwich refused for " + order.getPerson());
         else
@@ -37,8 +37,8 @@ public class OrderRepository {
     }
 
     public int countSandwichOfPerson (String name) {
-        ordersList.stream()
-                .filter(order -> order.getPerson().equalsIgnoreCase(name))
+        int sandwichCount = (int) ordersList.stream()
+                .filter(order -> order.getPerson().getName().equalsIgnoreCase(name))
                 .count();
         return sandwichCount ;
     }

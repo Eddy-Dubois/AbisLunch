@@ -4,39 +4,33 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Order {
-    private String orderDate;
-//    private Person person;
-    String person ;
+    private LocalDate orderDate;
+    private Person person;
     private Sandwich sandwich;
     private String bread ;
     private Session session;
 
     public Order(Person person, Sandwich sandwich, String bread, Session session) {
-        this.orderDate = LocalDate.now().toString();
-     //   this.person = person;
-        if (bread == "G")
-            this.person = "Eddy" ;
-        else this.person = "other" ;
+        this.orderDate = LocalDate.now();
+        this.person = person;
         this.sandwich = sandwich;
         this.bread = bread;
         this.session = session;
     }
 
-    public String getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
-    public String getPerson() {
-  //  public Person getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(String person) {
-  //  public void setPerson(Person person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
