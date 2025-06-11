@@ -1,19 +1,14 @@
-package Repository;
+package repository;
 
-import Model.Person;
-import Model.Sandwich;
-import Exception.SandwichAlreadyExistException ;
-import Exception.SandwichNotFoundException;
+import model.Sandwich;
+import exception.SandwichAlreadyExistException ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,7 +31,6 @@ public class SandwichRepository {
 */
     public SandwichRepository () {
         readFile();
-        printSandwichList();
     }
 
     public List<Sandwich> getSandwichList() {
@@ -48,11 +42,47 @@ public class SandwichRepository {
     }
 
     public void printSandwichList() {
-        System.out.println("***** sandwich list *****");
-        for (Sandwich sandwich : sandwichList) {
-            System.out.println(sandwich.getSandwichName() +
-                    (sandwich.isVegetableChoice()? "  vegetable (y/n) ": "" ));
-        }
+        System.out.println("****** viandes ******");
+        sandwichList.stream()
+                .filter(sandwich -> sandwich.getSandwichCategory().equalsIgnoreCase("Viandes"))
+                .forEach(sandwich -> {
+                    System.out.println(sandwich.getSandwichName() +
+                            (sandwich.getSandwichVegetableChoice()? "  vegetable (y/n) ": " " ) +
+                            "bread g/w " + sandwich.getSandwichPrice() + "€"
+                            );
+                });
+        System.out.println("****** Fish ******");
+        sandwichList.stream()
+                .filter(sandwich -> sandwich.getSandwichCategory().equalsIgnoreCase("Fish"))
+                .forEach(sandwich -> {
+                    System.out.println(sandwich.getSandwichName() +
+                        (sandwich.getSandwichVegetableChoice()? "  vegetable (y/n) ": " " )+
+                            "bread g/w " + sandwich.getSandwichPrice() + "€");
+                });
+        System.out.println("****** Cheese ******");
+        sandwichList.stream()
+                .filter(sandwich -> sandwich.getSandwichCategory().equalsIgnoreCase("Cheese"))
+                .forEach(sandwich -> {
+                    System.out.println(sandwich.getSandwichName() +
+                            (sandwich.getSandwichVegetableChoice()? "  vegetable (y/n) ": " " )+
+                            "bread g/w " + sandwich.getSandwichPrice() + "€");
+                });
+        System.out.println("****** Specials ******");
+        sandwichList.stream()
+                .filter(sandwich -> sandwich.getSandwichCategory().equalsIgnoreCase("Specials"))
+                .forEach(sandwich -> {
+                    System.out.println(sandwich.getSandwichName() +
+                            (sandwich.getSandwichVegetableChoice()? "  vegetable (y/n) ": " " )+
+                            "bread g/w " + sandwich.getSandwichPrice() + "€");
+                });
+        System.out.println("****** Veggie ******");
+        sandwichList.stream()
+                .filter(sandwich -> sandwich.getSandwichCategory().equalsIgnoreCase("Veggie"))
+                .forEach(sandwich -> {
+                    System.out.println(sandwich.getSandwichName() +
+                            (sandwich.getSandwichVegetableChoice()? "  vegetable (y/n) ": " " )+
+                            "bread g/w " + sandwich.getSandwichPrice() + "€");
+                });
     }
 
     public void addSandwich(Sandwich sandwich) throws SandwichAlreadyExistException {
@@ -81,7 +111,7 @@ public class SandwichRepository {
         if (tokens[3].equalsIgnoreCase("Y")) {
             vegetableChoice = true;
         }
-        Sandwich sandwich = new Sandwich( tokens[0], tokens[1],tokens[2], vegetableChoice ) ;
+        Sandwich sandwich = new Sandwich( tokens[0], tokens[1],tokens[2], vegetableChoice, Double.parseDouble(tokens[3]) ) ;
         return sandwich;
     }
     public void readFile(){

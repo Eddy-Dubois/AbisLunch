@@ -1,8 +1,8 @@
-package Test;
+package test;
 
-import Exception.SandwichAlreadyExistException;
-import Model.Sandwich;
-import Repository.SandwichRepository;
+import exception.SandwichAlreadyExistException;
+import model.Sandwich;
+import repository.SandwichRepository;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class TestSandwich {
         SandwichRepository sl = new SandwichRepository();
         List<Sandwich> sandwiches = sl.getSandwichList();
         System.out.println("***** adding Crevettes");
-        Sandwich s1 = new Sandwich("Salade de crevettes", "Fish", "Salade de crevettes", true);
+        Sandwich s1 = new Sandwich("Salade de crevettes", "Fish", "Salade de crevettes", true, 8.5);
 
         try {
             sl.addSandwich(s1);

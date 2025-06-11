@@ -1,4 +1,4 @@
-package Exception;
+package exception;
 
 public class SandwichAlreadyExistException extends Exception {
     public SandwichAlreadyExistException(String message) {

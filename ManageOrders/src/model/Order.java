@@ -1,20 +1,29 @@
-package Model;
+package model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Order {
     private LocalDate orderDate;
     private Person person;
     private Sandwich sandwich;
+    private String vegetablechoice ;
     private String bread ;
     private Session session;
 
-    public Order(Person person, Sandwich sandwich, String bread, Session session) {
+    public String getVegetablechoice() {
+        return vegetablechoice;
+    }
+
+    public void setVegetablechoice(String vegetablechoice) {
+        this.vegetablechoice = vegetablechoice;
+    }
+
+    public Order(Person person, Sandwich sandwich, String bread, String vegetablechoice, Session session) {
         this.orderDate = LocalDate.now();
         this.person = person;
         this.sandwich = sandwich;
         this.bread = bread;
+        this.vegetablechoice = vegetablechoice ;
         this.session = session;
     }
 

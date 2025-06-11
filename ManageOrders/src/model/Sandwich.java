@@ -1,22 +1,41 @@
-package Model;
+package model;
 
-import enumeration.SandwichCategory;
+import Interfaces.CustomComposition;
 
 import java.util.Objects;
 
-public class Sandwich {
+public class Sandwich implements CustomComposition {
 
     private String sandwichName ;
     private String sandwichCategory ;
     private String sandwichDescription ;
-    private boolean vegetableChoice ;
+    private boolean sandwichVegetableChoice ;
+    private double sandwichPrice ;
 
-    public Sandwich(String sandwichName, String sandwichCategory, String sandwichDescription, boolean vegetableChoice) {
+    public Sandwich(String sandwichName, String sandwichCategory, String sandwichDescription,
+                    boolean vegetableChoice, double sandwichPrice) {
 
         this.sandwichName = sandwichName;
         this.sandwichCategory = sandwichCategory;
+        this.sandwichVegetableChoice = isVegetableChoiceAllowed(sandwichCategory) ;
         this.sandwichDescription = sandwichDescription;
-        this.vegetableChoice = vegetableChoice;
+        this.sandwichPrice = sandwichPrice ;
+    }
+
+    public double getSandwichPrice() {
+        return sandwichPrice;
+    }
+
+    public boolean getSandwichVegetableChoice() {
+        return sandwichVegetableChoice;
+    }
+
+    public void setSandwichVegetableChoice(boolean sandwichVegetableChoice) {
+        this.sandwichVegetableChoice = sandwichVegetableChoice;
+    }
+
+    public void setSandwichPrice(double sandwichPrice) {
+        this.sandwichPrice = sandwichPrice;
     }
 
     public String getSandwichName() {
@@ -43,14 +62,6 @@ public class Sandwich {
         this.sandwichDescription = sandwichDescription;
     }
 
-    public boolean isVegetableChoice() {
-        return vegetableChoice;
-    }
-
-    public void setVegetableChoice(boolean vegetableChoice) {
-        this.vegetableChoice = vegetableChoice;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,5 +73,13 @@ public class Sandwich {
     @Override
     public int hashCode() {
         return Objects.hashCode(sandwichName);
+    }
+
+    @Override
+    public boolean isVegetableChoiceAllowed(String category) {
+        boolean vegetableChoice = false ;
+        if (category.equalsIgnoreCase(FISH) || category.equalsIgnoreCase(MEAT) || category.equalsIgnoreCase(CHEESE))
+            vegetableChoice = true ;
+        return vegetableChoice;
     }
 }
