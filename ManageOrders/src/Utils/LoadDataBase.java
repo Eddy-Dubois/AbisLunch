@@ -10,20 +10,24 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class LoadDataBase {
-    public static Set<Student> students =  new TreeSet<>(Comparator.comparing(Student::getPersonName));
+/*    public static Set<Student> students =  new TreeSet<>(Comparator.comparing(Student::getPersonName));
     static Set<String> sessionNames = new HashSet<>();
     public static Set<Instructor> instructors = new TreeSet<>(Comparator.comparing(Instructor::getPersonName));
 
     public static Map<String, Instructor> sessionNameToInstructor = new HashMap<>();
     public static Map<String, List<Student>> sessionNameToStudents = new HashMap<>();
-
+*/
     public static Set<Sandwich> sandwiches =  new TreeSet<>(Comparator.comparing(Sandwich::getName));
     public static Set<Ingredients> ingredients = new TreeSet<>(Comparator.comparing(Ingredients::getIngredient));
     public static Map<String, List<Ingredients>> sandwichToIngredients = new HashMap<>();
 
 
     public static void loadAllData () throws FileNotFoundException {
-        List<ReadUserData> readList = ReadUserData.readInput();
+
+
+
+
+/*        List<ReadUserData> readList = ReadUserData.readInput();
 
         for (ReadUserData rf : readList) {
             students.add(rf.getStudent());
@@ -64,6 +68,7 @@ public class LoadDataBase {
             sandwichToIngredients.put(s.getName(),rs.getIngredients());
         }
         sandwichList.addAll(sandwiches);
-        SandwichRepository sandwichRepository = new SandwichRepository(sandwichList);
+
+*/
     }
 }

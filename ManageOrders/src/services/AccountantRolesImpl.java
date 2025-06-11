@@ -1,12 +1,19 @@
 package services;
 
 import Interfaces.AccountantRoles;
+import model.MenuOrder;
+
+import java.util.List;
 
 public class AccountantRolesImpl implements AccountantRoles {
 
 
     @Override
-    public double calculateExpenses() {
-        return 0;
+    public void calculateExpenses(List<MenuOrder> orderList) {
+        double totalPrice = 0;
+        for (MenuOrder order : orderList) {
+            totalPrice += order.getPrice();
+        }
+        System.out.println("Total Price for Orders for date " + orderList.getFirst().getOrderDate() + " is " + totalPrice);
     }
 }
