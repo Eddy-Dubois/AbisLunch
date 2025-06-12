@@ -4,7 +4,7 @@ import enumerations.Bread;
 import enumerations.SandwichType;
 import repository.IngredientRepo;
 
-public class Sandwich {
+public class Sandwichitem {
 
     String name;
     IngredientRepo ingredientRepo;
@@ -14,7 +14,7 @@ public class Sandwich {
     boolean hasVeggies;
     double price;
 
-    public Sandwich(String name, boolean isCustomizable, SandwichType type, IngredientRepo ingredientRepo , double price) {
+    public Sandwichitem(String name, boolean isCustomizable, SandwichType type, IngredientRepo ingredientRepo , double price) {
         this.name = name;
         this.isCustomizable = isCustomizable;
         this.type = type;
@@ -22,7 +22,7 @@ public class Sandwich {
         this.price = price;
     }
 
-    public Sandwich(String name, boolean isCustomizable, SandwichType type , double price) {
+    public Sandwichitem(String name, boolean isCustomizable, SandwichType type , double price) {
         this.name = name;
         this.isCustomizable = isCustomizable;
         this.type = type;
