@@ -2,6 +2,8 @@ package repository;
 
 import model.Sandwich;
 import exception.SandwichAlreadyExistException ;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class SandwichRepository {
+    static Logger exceptionLogger = LogManager.getLogger("exceptionLogger");
+    static Logger infoLogger = Logger.getRootLogger();
     static String fileLocation = "C:/temp/javacourses/sandwiches.csv";
     private List<Sandwich> sandwichList = new ArrayList<>();
 /*
@@ -87,7 +91,10 @@ public class SandwichRepository {
 
     public void addSandwich(Sandwich sandwich) throws SandwichAlreadyExistException {
         if (sandwichList.contains(sandwich))
-            throw new  SandwichAlreadyExistException ("sandwich " + sandwich.getSandwichName() + " already exist");
+        {   exceptionLogger.error("sandwich \" + sandwich.getSandwichName() + \" already exist");
+            infoLogger.info("sandwich \" + sandwich.getSandwichName() + \" already exist");
+            throw  new  SandwichAlreadyExistException ("sandwich " + sandwich.getSandwichName() + " already exist");
+}
         else {
             sandwichList.add(sandwich);
             System.out.println("sandwich added");
