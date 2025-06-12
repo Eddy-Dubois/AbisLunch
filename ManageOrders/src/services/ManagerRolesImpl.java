@@ -27,6 +27,7 @@ public class ManagerRolesImpl  implements ManagerRoles {
 
     @Override
     public void printOrders(List<MenuOrder> orderList) {
-        System.out.println();
+        orderList.stream()
+                .forEach(System.out::println);
     }
 }

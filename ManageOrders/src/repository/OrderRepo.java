@@ -1,6 +1,7 @@
 package repository;
 
 import model.MenuItem;
+import model.MenuOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.List;
 public class OrderRepo {
 
 
-    List<model.MenuItem> orderList = new ArrayList<MenuItem>();
+    List<model.MenuOrder> orderList = new ArrayList<MenuOrder>();
 
-    public OrderRepo(List<MenuItem> orderList) {
+    public OrderRepo(List<MenuOrder> orderList) {
         this.orderList = orderList;
     }
 
@@ -18,9 +19,16 @@ public class OrderRepo {
 
     }
 
+    public List<MenuOrder> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(MenuOrder order) {
+        this.orderList.add(order) ;
+    }
 
 
-    public void setOrderList(List<MenuItem> orderList) {
+    public void setOrderList(List<MenuOrder> orderList) {
         this.orderList = orderList;
     }
 }

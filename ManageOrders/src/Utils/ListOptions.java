@@ -17,7 +17,8 @@ public class ListOptions {
                 System.out.println("""
                         1. Add Order
                         2. Remove Order
-                        3. Print Order List""");
+                        3. Print Order List
+                        4. Save In History""");
                 break;
             case 5:
                 System.out.println("View Stats");break;

@@ -41,7 +41,7 @@ public class PrepareData {
                     case 1:
                         try {
                             Student student = students.stream()
-                                    .filter(s -> s.getPersonName().equalsIgnoreCase(inputName))
+                                    .filter(s -> s.getPersonName().equalsIgnoreCase(inputName.trim()))
                                     .findFirst()
                                     .orElseThrow(() -> new NoSuchElementException("Not a valid User. Try Again!!!"));
                             found = true;

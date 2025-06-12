@@ -33,16 +33,25 @@ public class Test {
         Map<String , List<Ingredients>> ingredientsMap = sandwichRepository.getSandwichToIngredients();
         List<MenuItem> menuItemConfirmed = new ArrayList<>();
         PersonRolesImpl personRoles = new PersonRolesImpl();
+        ManagerRolesImpl managerRoles = new ManagerRolesImpl();
+        ManagerRepository managerRepository = new ManagerRepository();
+        List<MenuOrder> menuOrderList = new ArrayList<>();
         Sandwich sandwich;
         OrderRepository orderRepository  = new OrderRepository();
- //       OrderRepo oR = new OrderRepo() ;
+        OrderRepo orderRepo = new OrderRepo();
         model.Person person = new Person() ;
         model.Session sessionSel ;
+
+        Scanner scannerin = new Scanner(System.in) ;
+        String lastin = null;
+        do{
         int role = PrintLoginPage.printLogin();
+        person = PrepareData.mapData(role , studentList , instructorList);
+
         String choice = ListOptions.printList(role);
         if (role == 1 || role == 2 || (role == 4 && (Integer.parseInt(choice) == 1)) ) {
-            person = PrepareData.mapData(role , studentList , instructorList);
-            menuItemConfirmed = PrintMenu.listMenu(sandwichRepository);
+
+            menuItemConfirmed = PrintMenu.listMenu(sandwichRepository, ingredientsMap );
             final model.Person personfound = person;
             Optional<model.Session> session;
             for (MenuItem s : menuItemConfirmed) {
@@ -89,7 +98,7 @@ public class Test {
                     Order order = new Order(person , sandwich , bread , veggie , null ) ;
                     MenuOrder menuOrder = new MenuOrder(s,LocalDate.now() , person , sessionSel, s.getPrice()  ) ;
                     orderRepository.addOrder(order);
- //                   personRoles.addOrder(order);
+                    orderRepo.setOrderList(personRoles.addOrderMenu(menuOrder));
 
                 } else if (person instanceof model.Instructor) {
                     String sessionName = instructorMap.entrySet().stream()
@@ -132,39 +141,43 @@ public class Test {
                     sandwich = new Sandwich(s.getName(),category , ingredients , s.isHasVeggies() , s.getPrice());
                     String breadtype ;
                     Order order = new Order(person , sandwich , bread , veggie , null ) ;
- //                   MenuOrder menuOrder = new MenuOrder(s,LocalDate.now() , person , sessionSel, s.getPrice()  ) ;
+                    menuOrder = new MenuOrder(s,LocalDate.now() , person , sessionSel, s.getPrice()  ) ;
                     orderRepository.addOrder(order);
- //                   oR.setOrderList(personRoles.addOrder(order));
+                    orderRepo.setOrderList(personRoles.addOrderMenu(menuOrder)) ;
+                    menuOrderList = orderRepo.getOrderList();
+                    menuOrderList.stream()
+                            .forEach(System.out::println);
                 }
             }
         }
         if (role == 3) {
             AccountantRolesImpl accountantRoles = new AccountantRolesImpl();
-//            accountantRoles.calculateExpenses(oR.getOrderList());
+            accountantRoles.calculateExpenses(orderRepo.getOrderList());
         }
         if (role == 4) {
 
-
-
-/*            ManagerRolesImpl managerRoles = new ManagerRolesImpl(); */
-            ManagerRepository managerRepository = new ManagerRepository();
-
             switch (Integer.parseInt(choice)) {
                  case 2:
-                    managerRepository.saveOrdersInHistory(); break;
- /*                      PrintOrdersList.printConfirmedOrders(oR.getOrderList());
+                       PrintOrdersList.printConfirmedOrders(orderRepo.getOrderList());
                        System.out.println("Authenticate Person whose order needs to be removed");
                        Scanner sc = new Scanner(System.in) ;
-                       Model.Person p1 = new Model.Person(sc.nextLine());
-                       managerRoles.removeOrder(oR.getOrderList() , p1); */
+                       Person p1 = new Person(sc.nextLine());
+                       managerRoles.removeOrder(orderRepo.getOrderList() , p1);
+                       break;
                 case 3:
-                    managerRepository.printOrdersOfTheDay(); break;
- //                   managerRoles.printOrders(oR.getOrderList());
+                    managerRepository.printOrdersOfTheDay();
+                    managerRoles.printOrders(orderRepo.getOrderList());
+                    break;
+                case 4:
+                    managerRepository.saveOrdersInHistory();
             }
         }
         if (role == 5) {
- //           GeneralManagerRolesImpl generalManagerRoles = new GeneralManagerRolesImpl();
-//            generalManagerRoles.viewStats(oR.getOrderList());
+            GeneralManagerRolesImpl generalManagerRoles = new GeneralManagerRolesImpl();
+            generalManagerRoles.viewStats(orderRepo.getOrderList());
         }
+            System.out.print("Continue ?? ");
+            lastin = scannerin.nextLine();
+        }  while (lastin.equalsIgnoreCase("Y")) ;
     }
 }

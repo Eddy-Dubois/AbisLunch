@@ -9,7 +9,7 @@ import java.util.*;
 
 public class PrintMenu {
 
-    public static List<MenuItem> listMenu (SandwichRepo sandwichRepository) {
+    public static List<MenuItem> listMenu (SandwichRepo sandwichRepository, Map<String , List<Ingredients>> ingredientsMap) {
         List<MenuItem> menuItems = new ArrayList<>(sandwichRepository.getSandwiches());
         menuItems.sort(Comparator.comparing(MenuItem::getType));
         System.out.println("Please choose from the below Menu, Max 2 items");
@@ -56,11 +56,27 @@ public class PrintMenu {
                             } else {
                                 sandwitchOrdered.setHasVeggies(false);
                             }
+                        }else{
+                            System.out.println("Do you want to see the ingredients (Y/N): ");
+                            String listIngredients = sc.nextLine();
+                            if (listIngredients.equalsIgnoreCase("Y")) {
+                                for (Map.Entry<String, List<Ingredients>> entry : ingredientsMap.entrySet()) {
+                                    String key = entry.getKey();
+                                    List<Ingredients> ingredientsList = entry.getValue();
+
+                                    System.out.println("Category: " + key); // or "Key" if not a category
+
+                                    for (Ingredients ingredient : ingredientsList) {
+                                        System.out.println("  - " + ingredient.getIngredient()); // assuming Ingredients has getName()
+                                    }
+                                }
+                            }
                         }
                         System.out.println("Select Your Choice of Bread (Gris/Wit): ");
                         String enuminput = sc.nextLine();
 
                         sandwitchOrdered.setBreadType(Bread.valueOf(enuminput.toUpperCase()));
+
 
                         menuItemConfirmed.add(sandwitchOrdered);
                         orderCounter++;

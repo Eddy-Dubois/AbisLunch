@@ -1,24 +1,22 @@
 package services;
 
 import Interfaces.PersonRoles;
-import model.MenuItem;
 import model.MenuOrder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonRolesImpl implements PersonRoles {
+
+    List<MenuOrder> listOrder = new ArrayList<>();
 
     public PersonRolesImpl() {
     }
 
     @Override
-    public List<MenuItem> addOrder(MenuOrder o) {
-        return List.of();
-    }
-
-/*    public List<MenuOrder> addOrder(MenuOrder o) {
-        List<MenuOrder> listOrder = new ArrayList<>();
+    public List<MenuOrder> addOrderMenu(MenuOrder o) {
         listOrder.add(o) ;
         return listOrder;
-    }*/
+    }
+
 }
