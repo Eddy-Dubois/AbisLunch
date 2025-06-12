@@ -1,7 +1,11 @@
 package Interfaces;
 
+import model.MenuOrder;
+
+import java.util.List;
+
 public interface GeneralManagerRoles {
 
 
-    void viewStats();
+    void viewStats(List<MenuOrder> orderList);
 }

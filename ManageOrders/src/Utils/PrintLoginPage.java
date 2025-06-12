@@ -24,6 +24,8 @@ public class PrintLoginPage {
             System.out.print("Select Your Role (1-5): ");
             if (sc.hasNextInt()) { // Check if input is an integer and within range
                 role = sc.nextInt();
+
+                sc.nextLine();
                 if (role >= 1 && role <= 5) {
                     break;
                 }else{

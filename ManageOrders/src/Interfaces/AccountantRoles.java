@@ -1,6 +1,10 @@
 package Interfaces;
 
+import model.MenuOrder;
+
+import java.util.List;
+
 public interface AccountantRoles {
 
-    double calculateExpenses();
+    void calculateExpenses(List<MenuOrder> orderList);
 }
