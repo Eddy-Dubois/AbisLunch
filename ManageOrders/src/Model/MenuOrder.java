@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MenuOrder {
 
@@ -19,6 +20,7 @@ public class MenuOrder {
         this.session = session;
         this.price = price;
     }
+
 
     public Sandwich getSandwich() {
         return sandwich;
