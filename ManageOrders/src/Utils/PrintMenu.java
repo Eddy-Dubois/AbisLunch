@@ -3,32 +3,28 @@ package Utils;
 import enumerations.Bread;
 import enumerations.SandwichType;
 import model.MenuItem;
-import model.MenuOrder;
-import model.Sandwich;
-import model.Session;
 import repository.SandwichRepository;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class PrintMenu {
 
-    public static List<Sandwich> listMenu (SandwichRepository sandwichRepository) {
-        List<Sandwich> sandwiches = new ArrayList<>(sandwichRepository.getSandwiches());
-        sandwiches.sort(Comparator.comparing(Sandwich::getType));
+    public static List<MenuItem> listMenu (SandwichRepository sandwichRepository) {
+        List<MenuItem> menuItems = new ArrayList<>(sandwichRepository.getSandwiches());
+        menuItems.sort(Comparator.comparing(MenuItem::getType));
         System.out.println("Please choose from the below Menu, Max 2 items");
 
         int i = 0;
         SandwichType last = null;
-        for (Sandwich sandwich : sandwiches) {
-            if (sandwich.getType() != last) {
+        for (MenuItem menuItem : menuItems) {
+            if (menuItem.getType() != last) {
                 System.out.println("-".repeat(100));
-                System.out.println(sandwich.getType());
+                System.out.println(menuItem.getType());
                 System.out.println("-".repeat(100));
 
-                last = sandwich.getType();
+                last = menuItem.getType();
             }
-            System.out.println(++i + "." + sandwich.getName());
+            System.out.println(++i + "." + menuItem.getName());
 
         }
         System.out.println("-".repeat(100));
@@ -37,19 +33,19 @@ public class PrintMenu {
         int inputValue;
         String orderInput = null;
         int orderCounter = 0;
-        List<Sandwich> sandwichConfirmed = new ArrayList<>();
+        List<MenuItem> menuItemConfirmed = new ArrayList<>();
         do {
             System.out.print("Input Your Choice from the List: ");
             if (sc.hasNextInt()) {
                 inputValue = sc.nextInt();
                 sc.nextLine();
-                if (inputValue <= sandwiches.size()) {
+                if (inputValue <= menuItems.size()) {
                     int finalInputValue = inputValue;
-                    boolean exists = sandwiches.stream().anyMatch(s -> s.equals(sandwiches.get(finalInputValue - 1)));
+                    boolean exists = menuItems.stream().anyMatch(s -> s.equals(menuItems.get(finalInputValue - 1)));
                     if (exists) {
-                        Optional<Sandwich> sandwich = sandwichRepository
-                                .findSandwich(sandwiches.get(inputValue - 1).getName());
-                        Sandwich sandwitchOrdered = sandwich.map(s -> s).orElse(null);
+                        Optional<MenuItem> sandwich = sandwichRepository
+                                .findSandwich(menuItems.get(inputValue - 1).getName());
+                        MenuItem sandwitchOrdered = sandwich.map(s -> s).orElse(null);
                         System.out.println("-".repeat(100));
                         if (sandwitchOrdered.isCustomizable()) {
                             System.out.println("Your choice needs more Input..");
@@ -66,7 +62,7 @@ public class PrintMenu {
 
                         sandwitchOrdered.setBreadType(Bread.valueOf(enuminput.toUpperCase()));
 
-                        sandwichConfirmed.add(sandwitchOrdered);
+                        menuItemConfirmed.add(sandwitchOrdered);
                         orderCounter++;
                         System.out.println("-".repeat(100));
                         System.out.println("Do you want to add another item (Y/N) ? ");
@@ -85,7 +81,7 @@ public class PrintMenu {
             }
 
         }while(orderInput.equalsIgnoreCase("Y"));
-        return sandwichConfirmed;
+        return menuItemConfirmed;
 
     }
 }

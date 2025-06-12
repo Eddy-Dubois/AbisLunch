@@ -1,10 +1,7 @@
 package Utils;
 
 import model.*;
-import repository.IngredientRepo;
 import repository.SandwichRepository;
-import repository.SessionRepo;
-import repository.StudentRepo;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -17,7 +14,7 @@ public class LoadDataBase {
     public static Map<String, Instructor> sessionNameToInstructor = new HashMap<>();
     public static Map<String, List<Student>> sessionNameToStudents = new HashMap<>();
 */
-    public static Set<Sandwich> sandwiches =  new TreeSet<>(Comparator.comparing(Sandwich::getName));
+    public static Set<MenuItem> menuItems =  new TreeSet<>(Comparator.comparing(MenuItem::getName));
     public static Set<Ingredients> ingredients = new TreeSet<>(Comparator.comparing(Ingredients::getIngredient));
     public static Map<String, List<Ingredients>> sandwichToIngredients = new HashMap<>();
 

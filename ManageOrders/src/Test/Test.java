@@ -14,7 +14,6 @@ import services.PersonRolesImpl;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Test {
 
@@ -28,9 +27,9 @@ public class Test {
         Map<String , List<Student>> studentMap = sessionRepo.getSessionNameToStudents();
         Map<String, Instructor> instructorMap = sessionRepo.getSessionNameToInstructor();
         SandwichRepository sandwichRepository = new SandwichRepository();
-        List<Sandwich> sandwichList = sandwichRepository.getSandwiches();
+        List<MenuItem> menuItemList = sandwichRepository.getSandwiches();
         Map<String , List<Ingredients>> ingredientsMap = sandwichRepository.getSandwichToIngredients();
-        List<Sandwich> sandwichConfirmed = new ArrayList<>();
+        List<MenuItem> menuItemConfirmed = new ArrayList<>();
         PersonRolesImpl personRoles = new PersonRolesImpl();
         OrderRepository oR = new OrderRepository() ;
         Person person = new Person() ;
@@ -39,10 +38,10 @@ public class Test {
         String choice = ListOptions.printList(role);
         if (role == 1 || role == 2 || (role == 4 && (Integer.parseInt(choice) == 1)) ) {
             person = PrepareData.mapData(role , studentList , instructorList);
-            sandwichConfirmed = PrintMenu.listMenu(sandwichRepository);
+            menuItemConfirmed = PrintMenu.listMenu(sandwichRepository);
             final Person personfound = person;
             Optional<Session> session;
-            for (Sandwich s : sandwichConfirmed) {
+            for (MenuItem s : menuItemConfirmed) {
                 if (person instanceof Student) {
                     String sessionName = studentMap.entrySet().stream()
                             .filter(entry -> entry.getValue().contains(personfound)) // Find matching student

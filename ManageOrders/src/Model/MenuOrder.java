@@ -1,20 +1,17 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class MenuOrder {
 
-    private Sandwich sandwich;
+    private MenuItem menuItem;
     private LocalDate orderDate;
     private Person person;
     private Session session;
     double price;
 
-    public MenuOrder(Sandwich sandwich, LocalDate orderDate, Person person, Session session , double price) {
-        this.sandwich = sandwich;
+    public MenuOrder(MenuItem menuItem, LocalDate orderDate, Person person, Session session , double price) {
+        this.menuItem = menuItem;
         this.orderDate = orderDate;
         this.person = person;
         this.session = session;
@@ -22,12 +19,12 @@ public class MenuOrder {
     }
 
 
-    public Sandwich getSandwich() {
-        return sandwich;
+    public MenuItem getSandwich() {
+        return menuItem;
     }
 
-    public void setSandwich(Sandwich sandwich) {
-        this.sandwich = sandwich;
+    public void setSandwich(MenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 
     public LocalDate getOrderDate() {

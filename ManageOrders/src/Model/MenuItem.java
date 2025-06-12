@@ -61,6 +61,10 @@ public class MenuItem {
         this.hasVeggies = hasVeggies;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "Sandwich{" +

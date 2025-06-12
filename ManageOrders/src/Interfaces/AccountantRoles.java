@@ -1,6 +1,5 @@
 package Interfaces;
 
-import model.MenuItem;
 import model.MenuOrder;
 
 import java.util.List;
