@@ -15,6 +15,14 @@ public class Session {
         this.nbrofStudents = nbrofStudents;
     }
 
+    public String getSessionName() {
+        return sessionName;
+    }
+
+    public int getNbrofStudents() {
+        return nbrofStudents;
+    }
+
     public Instructor getInstructor() {
         return instructor;
     }

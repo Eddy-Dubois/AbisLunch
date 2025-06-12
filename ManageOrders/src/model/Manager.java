@@ -2,29 +2,10 @@ package model;
 
 import Interfaces.ManagerRoles;
 
-public class Manager extends Person implements ManagerRoles {
-    @Override
-    public void addOrders() {
+import java.util.List;
 
-    }
+public class Manager extends Person {
 
-    @Override
-    public void deleteOrders() {
+        String managerName;
 
-    }
-
-    @Override
-    public void updateOrders() {
-
-    }
-
-    @Override
-    public void viewOrders() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Manager{}";
-    }
 }
