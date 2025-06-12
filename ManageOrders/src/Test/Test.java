@@ -6,14 +6,12 @@ import model.*;
 import repository.OrderRepository;
 import repository.SandwichRepository;
 import repository.SessionRepo;
-import repository.StudentRepo;
 import services.AccountantRolesImpl;
 import services.GeneralManagerRolesImpl;
 import services.ManagerRolesImpl;
 import services.PersonRolesImpl;
 
 import java.io.FileNotFoundException;
-import java.io.LineNumberInputStream;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Stream;
@@ -36,24 +34,27 @@ public class Test {
         PersonRolesImpl personRoles = new PersonRolesImpl();
         OrderRepository oR = new OrderRepository() ;
         Person person = new Person() ;
+        Session sessionSel ;
         int role = PrintLoginPage.printLogin();
         String choice = ListOptions.printList(role);
         if (role == 1 || role == 2 || (role == 4 && (Integer.parseInt(choice) == 1)) ) {
             person = PrepareData.mapData(role , studentList , instructorList);
             sandwichConfirmed = PrintMenu.listMenu(sandwichRepository);
             final Person personfound = person;
-            Session session;
+            Optional<Session> session;
             for (Sandwich s : sandwichConfirmed) {
                 if (person instanceof Student) {
                     String sessionName = studentMap.entrySet().stream()
-                            .filter(entry -> entry.getValue().equals(personfound)) // Find matching student
+                            .filter(entry -> entry.getValue().contains(personfound)) // Find matching student
                             .map(Map.Entry::getKey) // Extract session name
                             .findFirst()
                             .orElse("Session not found");
-                    Stream<Session> sessionS = sessionList.stream()
-                                     .filter(ses ->ses.getSessionName().equalsIgnoreCase(sessionName));
-                    session = (Session) sessionS;
-                    MenuOrder order = new MenuOrder(s,LocalDate.now() , person , session, s.getPrice()  ) ;
+                    session = Optional.ofNullable(sessionList.stream()
+                            .filter(ses -> ses.getSessionName().equalsIgnoreCase(sessionName))
+                            .findFirst()
+                            .orElseThrow(() -> new NoSuchElementException("Session not found")));
+                    sessionSel = session.get();
+                    MenuOrder order = new MenuOrder(s,LocalDate.now() , person , sessionSel, s.getPrice()  ) ;
                     personRoles.addOrder(order);
 
                 } else if (person instanceof Instructor) {
@@ -62,10 +63,12 @@ public class Test {
                             .map(Map.Entry::getKey) // Extract session name
                             .findFirst()
                             .orElse("Session not found");
-                    Stream<Session> sessionI = sessionList.stream()
-                            .filter(ses1 ->ses1.getSessionName().equalsIgnoreCase(sessionName));
-                    session = (Session) sessionI;
-                    MenuOrder order = new MenuOrder(s,LocalDate.now() , person , session, s.getPrice()  ) ;
+                    session = Optional.ofNullable(sessionList.stream()
+                            .filter(ses1 -> ses1.getSessionName().equalsIgnoreCase(sessionName))
+                            .findFirst()
+                            .orElseThrow(() -> new NoSuchElementException("Session not found")));
+                    sessionSel = session.get();
+                    MenuOrder order = new MenuOrder(s,LocalDate.now() , person , sessionSel, s.getPrice()  ) ;
                     oR.setOrderList(personRoles.addOrder(order));
                 }
             }
