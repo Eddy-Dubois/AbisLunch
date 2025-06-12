@@ -14,6 +14,6 @@ public class AccountantRolesImpl implements AccountantRoles {
         for (MenuOrder order : orderList) {
             totalPrice += order.getPrice();
         }
-        System.out.println("Total Price for Orders for date " + orderList.getFirst().getOrderDate() + " is " + totalPrice);
+        System.out.println("Total Price for Orders for date " + orderList.get(1).getOrderDate() + " is " + totalPrice);
     }
 }
