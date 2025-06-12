@@ -1,6 +1,5 @@
 package repository;
 
-import model.Person;
 import model.Student;
 
 import java.util.ArrayList;

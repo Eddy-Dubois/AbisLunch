@@ -2,14 +2,14 @@ package Utils;
 
 import enumerations.Bread;
 import enumerations.SandwichType;
-import model.MenuItem;
-import repository.SandwichRepository;
+import model.*;
+import repository.SandwichRepo;
 
 import java.util.*;
 
 public class PrintMenu {
 
-    public static List<MenuItem> listMenu (SandwichRepository sandwichRepository) {
+    public static List<MenuItem> listMenu (SandwichRepo sandwichRepository) {
         List<MenuItem> menuItems = new ArrayList<>(sandwichRepository.getSandwiches());
         menuItems.sort(Comparator.comparing(MenuItem::getType));
         System.out.println("Please choose from the below Menu, Max 2 items");

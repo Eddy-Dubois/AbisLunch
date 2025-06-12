@@ -1,7 +1,7 @@
 package Utils;
 
-import enumerations.SandwichType;
 import model.Ingredients;
+import enumerations.SandwichType;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

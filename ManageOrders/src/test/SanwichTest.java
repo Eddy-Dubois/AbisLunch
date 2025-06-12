@@ -1,12 +1,9 @@
 package test;
 
 import exception.SandwichAlreadyExistException;
-import model.Person;
 import model.Sandwich;
 import org.junit.jupiter.api.Test;
 import repository.SandwichRepository;
-
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

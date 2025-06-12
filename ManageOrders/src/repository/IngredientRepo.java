@@ -1,19 +1,20 @@
 package repository;
 
-import model.Ingredients;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientRepo {
 
-    List<Ingredients> ingredientsList = new ArrayList<>();
+    List<model.Ingredients> ingredientsList = new ArrayList<>();
 
-    public IngredientRepo(List<Ingredients> ingredientsList) {
+    public IngredientRepo(List<model.Ingredients> ingredientsList) {
         this.ingredientsList.addAll(ingredientsList);
     }
 
-    public List<Ingredients> getIngredientsList() {
+
+
+
+    public List<model.Ingredients> getIngredientsList() {
         return ingredientsList;
     }
 

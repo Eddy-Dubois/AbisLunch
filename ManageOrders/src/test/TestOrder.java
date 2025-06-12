@@ -13,7 +13,7 @@ public class TestOrder {
         Student s2 = new Student("Philippe");
         Instructor i3 = new Instructor("Sandy");
         SandwichRepository sl = new SandwichRepository();
-        List<Sandwich> sandwiches = sl.getSandwichList();
+        List<model.Sandwich> sandwiches = sl.getSandwichList();
         OrderRepository ol = new OrderRepository() ;
         sl.printSandwichList();
 

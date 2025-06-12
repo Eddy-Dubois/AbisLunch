@@ -1,11 +1,12 @@
 package Interfaces;
 
+import model.MenuItem;
 import model.MenuOrder;
 
 import java.util.List;
 
 public interface PersonRoles {
 
-    List<MenuOrder> addOrder(MenuOrder o) ;
+    List<MenuItem> addOrder(MenuOrder o) ;
 
 }

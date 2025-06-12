@@ -2,9 +2,10 @@ package model;
 
 import repository.StudentRepo;
 
+
 public class Session {
     private String sessionName;
-    private Instructor instructor;
+    private model.Instructor instructor;
     private StudentRepo studentRepo;
     private int nbrofStudents;
 

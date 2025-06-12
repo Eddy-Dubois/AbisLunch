@@ -10,9 +10,9 @@ public class TestSandwich {
 
     public static void main(String[] args) {
         SandwichRepository sl = new SandwichRepository();
-        List<Sandwich> sandwiches = sl.getSandwichList();
+        List<model.Sandwich> sandwiches = sl.getSandwichList();
         System.out.println("***** adding Crevettes");
-        Sandwich s1 = new Sandwich("Salade de crevettes", "Fish", "Salade de crevettes", true, 8.5);
+        model.Sandwich s1 = new model.Sandwich("Salade de crevettes", "Fish", "Salade de crevettes", true, 8.5);
 
         try {
             sl.addSandwich(s1);

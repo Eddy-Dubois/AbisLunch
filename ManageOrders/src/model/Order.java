@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public class Order {
     private LocalDate orderDate;
     private Person person;
-    private Sandwich sandwich;
+    private model.Sandwich sandwich;
     private String vegetablechoice ;
     private String bread ;
-    private Session session;
+    private model.Session session;
 
     public String getVegetablechoice() {
         return vegetablechoice;
@@ -18,7 +18,7 @@ public class Order {
         this.vegetablechoice = vegetablechoice;
     }
 
-    public Order(Person person, Sandwich sandwich, String bread, String vegetablechoice, Session session) {
+    public Order(Person person, model.Sandwich sandwich, String bread, String vegetablechoice, Session session) {
         this.orderDate = LocalDate.now();
         this.person = person;
         this.sandwich = sandwich;
@@ -43,11 +43,11 @@ public class Order {
         this.person = person;
     }
 
-    public Sandwich getSandwich() {
+    public model.Sandwich getSandwich() {
         return sandwich;
     }
 
-    public void setSandwich(Sandwich sandwich) {
+    public void setSandwich(model.Sandwich sandwich) {
         this.sandwich = sandwich;
     }
 

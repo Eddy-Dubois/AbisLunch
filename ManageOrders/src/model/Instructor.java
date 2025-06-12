@@ -1,5 +1,7 @@
 package model;
 
+
+
 public class Instructor extends Person {
     public Instructor(String personName) {
         super(personName);
