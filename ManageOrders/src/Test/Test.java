@@ -1,10 +1,10 @@
-package Test;
+package test;
 
 import Utils.*;
 import exceptions.UserNotFoundException;
 import model.*;
-import repository.OrderRepository;
-import repository.SandwichRepository;
+import repository.OrderRepo;
+import repository.SandwichRepo;
 import repository.SessionRepo;
 import services.AccountantRolesImpl;
 import services.GeneralManagerRolesImpl;
@@ -26,12 +26,12 @@ public class Test {
         List<Session> sessionList = sessionRepo.getSessions();
         Map<String , List<Student>> studentMap = sessionRepo.getSessionNameToStudents();
         Map<String, Instructor> instructorMap = sessionRepo.getSessionNameToInstructor();
-        SandwichRepository sandwichRepository = new SandwichRepository();
+        SandwichRepo sandwichRepository = new SandwichRepo();
         List<MenuItem> menuItemList = sandwichRepository.getSandwiches();
         Map<String , List<Ingredients>> ingredientsMap = sandwichRepository.getSandwichToIngredients();
         List<MenuItem> menuItemConfirmed = new ArrayList<>();
         PersonRolesImpl personRoles = new PersonRolesImpl();
-        OrderRepository oR = new OrderRepository() ;
+        OrderRepo oR = new OrderRepo() ;
         Person person = new Person() ;
         Session sessionSel ;
         int role = PrintLoginPage.printLogin();

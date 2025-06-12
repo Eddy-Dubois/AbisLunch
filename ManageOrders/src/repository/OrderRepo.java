@@ -4,10 +4,21 @@
 
 package repository;
 
-public class OrderRepository {
+import model.MenuOrder;
+
+import java.util.List;
+
+public class OrderRepo {
     private java.util.List<model.MenuOrder> orderList;
 
-    public OrderRepository(model.MenuOrder order) { /* compiled code */ }
+    public OrderRepo(model.MenuOrder order) { /* compiled code */ }
+
+    public OrderRepo() {
+    }
+
+    public List<MenuOrder> getOrderList() {
+        return orderList;
+    }
 
     public void setOrderList(java.util.List<model.MenuOrder> orderList) { /* compiled code */ }
 }
